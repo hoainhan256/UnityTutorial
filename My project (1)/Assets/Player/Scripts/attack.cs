@@ -7,6 +7,7 @@ public class attack : MonoBehaviour
     void Start()
     {
         player = GetComponent<move>();
+
     }
 
     // Update is called once per frame
@@ -15,7 +16,8 @@ public class attack : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             player.anim.SetTrigger("attack");
-
+           
         }
+       
     }
 }

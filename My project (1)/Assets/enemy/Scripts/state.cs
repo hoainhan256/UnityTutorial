@@ -7,7 +7,7 @@ public class state : MonoBehaviour
     [SerializeField] bool flipRight = true;
     [SerializeField] int X;
     [SerializeField] float speed = 2;
-
+    public int damage = 25;
     [SerializeField] float runSpeed = 30;
     [SerializeField] float PatrolSpeed = 20;
     [Range(1f, 50f)]
@@ -16,13 +16,15 @@ public class state : MonoBehaviour
     [SerializeField] float distance = 0;
     [SerializeField] float followDis = 4f;
     [SerializeField] float AttackDis = 1;
+    public GameObject vfx;
     Rigidbody2D rig;
-    Animator anim;
+    public Animator anim;
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
         target = GameObject.FindWithTag("Player").transform;
         anim = GetComponent<Animator>();
+        vfx = gameObject.transform.GetChild(3).gameObject;
     }
 
     // Update is called once per frame
@@ -88,10 +90,11 @@ public class state : MonoBehaviour
         theScale.x = theScale.x * -1;
         transform.localScale = theScale;
     }
+    
     void Patrol()
     {
         rig.linearVelocity = new Vector2(X,rig.linearVelocity.y) * PatrolSpeed * Time.fixedDeltaTime;
-        Debug.Log("runing");
+        
     }
     void following()
     {
