@@ -23,6 +23,7 @@ public class enemyHealBar : MonoBehaviour
         slider.value = hp;
         if (hp <=0 && isDead == false)
         {
+            GameManager.point++;
             isDead = true;
             state.anim.SetTrigger("dead");
             slider.gameObject.SetActive(false);

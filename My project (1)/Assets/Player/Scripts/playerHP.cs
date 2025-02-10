@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class playerHP : MonoBehaviour
@@ -14,13 +15,15 @@ public class playerHP : MonoBehaviour
     [SerializeField] float timeTakeDame =3;
     [SerializeField] bool isDead = false;
     move player;
+    
     void Start()
     {
+        
         maxHp = 100;
         hpBar.maxValue = maxHp;
         hp = maxHp;
         sprite = GetComponent<SpriteRenderer>();
-       player = GetComponent<move>();
+        player = GetComponent<move>();
         
     }
 
@@ -43,9 +46,14 @@ public class playerHP : MonoBehaviour
             GetComponent<move>().enabled = false;
             GetComponent<Rigidbody2D>().simulated = false;
             GetComponent<Collider2D>().enabled = false;
-            GetComponent<playerHP>().enabled = false;
+            Invoke("RestGame", 2f);
+            
         }
         
+    }
+    void RestGame()
+    {
+        SceneManager.LoadScene(1);
     }
     private void FixedUpdate()
     {

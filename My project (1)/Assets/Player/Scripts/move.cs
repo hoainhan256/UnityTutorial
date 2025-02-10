@@ -12,9 +12,10 @@ public class move : MonoBehaviour
     [SerializeField] float minSpeed = 1.5f;
     [SerializeField] float jumpForce = 5f;
     [SerializeField] bool isGround = false;
+    [SerializeField] AudioSource _audio;
     void Start()
     {
-        
+        _audio = GetComponentInChildren<AudioSource>();
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -28,6 +29,11 @@ public class move : MonoBehaviour
     }
     void Update()
     {
+        if(velocity ==0)
+        {
+            _audio.loop = false;
+           
+        }
         velocity = Input.GetAxisRaw("Horizontal");
         if (Input.GetKey(KeyCode.LeftShift))
         {
