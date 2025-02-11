@@ -1,9 +1,12 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] TMP_InputField inputName;
+    [SerializeField] int Cout;
     void Start()
     {
         
@@ -16,7 +19,14 @@ public class Menu : MonoBehaviour
     }
     public void PlayGame(int sceneCout)
     {
-        SceneManager.LoadScene(sceneCout);
+        GameManager.Name = inputName.text;
+        Cout = sceneCout;
+        Invoke("LoadSceneGamePlay", 0.2f);
+        
+    }
+    void LoadSceneGamePlay()
+    {
+        SceneManager.LoadScene(Cout);
     }
 
 }

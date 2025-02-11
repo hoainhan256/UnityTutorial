@@ -7,7 +7,8 @@ public class Audio : MonoBehaviour
     [SerializeField] AudioClip slash;
     void Start()
     {
-        
+        _audio.volume = GameManager.volume;
+        _audio.mute = !GameManager.muteBool;
     }
 
     // Update is called once per frame

@@ -98,7 +98,7 @@ public class state : MonoBehaviour
     }
     void following()
     {
-        transform.position = Vector2.Lerp(transform.position, target.position, runSpeed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, target.position, runSpeed * Time.deltaTime);
         CheckDirFlip();
     }
     void Attack()
